@@ -31,13 +31,16 @@ def portScan(host, port):
 		
 
 def main():
+	
 	parser = optparse.OptionParser('Usage of Program: ' + '-H <target host> -p <target port>')
-	parser.add_option('-H', dest='tgtHost', type='string', help='specify target host')
-	parser.add_option('-p', dest='tgtPort', type='string', help='specify target port')
+	parser.add_option('-H', dest='tgtHost', type='string', help='specify target host', default=None)
+	parser.add_option('-p', dest='tgtPort', type='string', help='specify target port', default=None)
 	(options, args) = parser.parse_args()
 	tgtHost = options.tgtHost
 	tgtPort = str(options.tgtPort).split(',')
-	if (tgtHost == None) | (tgtPort[0] == None):
+	
+	if (tgtHost == None) | (tgtPort[0] == 'None'):
+		
 		print(parser.usage)
 		exit(0)
 	portScan(tgtHost, tgtPort)
